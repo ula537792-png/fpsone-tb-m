@@ -15,7 +15,7 @@ local welcomeFrame = Instance.new("Frame", screenGui)
 welcomeFrame.Size = UDim2.new(0.35, 0, 0.15, 0)
 welcomeFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
 welcomeFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-welcomeFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+welcomeFrame.BackgroundColor3 = Color3.fromRGB(8, 6, 12) -- Глубокий темно-фиолетово-черный оттенок
 welcomeFrame.BorderSizePixel = 0
 welcomeFrame.BackgroundTransparency = 1
 welcomeFrame.ZIndex = 5
@@ -23,15 +23,15 @@ welcomeFrame.ZIndex = 5
 Instance.new("UICorner", welcomeFrame).CornerRadius = UDim.new(0, 16)
 
 local welcomeStroke = Instance.new("UIStroke", welcomeFrame)
-welcomeStroke.Color = Color3.fromRGB(255, 100, 150)
+welcomeStroke.Color = Color3.fromRGB(160, 40, 220) -- Насыщенный неоново-фиолетовый контур
 welcomeStroke.Transparency = 1
-welcomeStroke.Thickness = 1.5
+welcomeStroke.Thickness = 1.8
 
 local welcomeText = Instance.new("TextLabel", welcomeFrame)
 welcomeText.Size = UDim2.new(1, 0, 1, 0)
 welcomeText.Position = UDim2.new(0, 0, 0, 0)
 welcomeText.Text = "Welcome to Inverium"
-welcomeText.TextColor3 = Color3.fromRGB(255, 255, 255)
+welcomeText.TextColor3 = Color3.fromRGB(240, 230, 255)
 welcomeText.Font = Enum.Font.GothamBold
 welcomeText.TextSize = 18
 welcomeText.BackgroundTransparency = 1
@@ -43,7 +43,7 @@ local mainFrame = Instance.new("Frame", screenGui)
 mainFrame.Size = UDim2.new(0.35, 0, 0.23, 0)
 mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
 mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-mainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+mainFrame.BackgroundColor3 = Color3.fromRGB(8, 6, 12) -- Глубокий темно-фиолетово-черный фон
 mainFrame.BorderSizePixel = 0
 mainFrame.Active = true
 mainFrame.Draggable = true
@@ -59,9 +59,9 @@ mainAspect.AspectRatio = 2.1
 mainAspect.DominantAxis = Enum.DominantAxis.Height
 
 local mainStroke = Instance.new("UIStroke", mainFrame)
-mainStroke.Color = Color3.fromRGB(255, 100, 150)
+mainStroke.Color = Color3.fromRGB(160, 40, 220) -- Насыщенный неоново-фиолетовый контур
 mainStroke.Transparency = 1
-mainStroke.Thickness = 1.5
+mainStroke.Thickness = 1.8
 
 local bgContainer = Instance.new("Frame", mainFrame)
 bgContainer.Size = UDim2.new(1, 0, 1, 0)
@@ -71,11 +71,11 @@ bgContainer.ZIndex = 3
 local function spawnParticle()
     if not mainFrame.Parent then return end
     local p = Instance.new("Frame", bgContainer)
-    local size = math.random(4, 7)
+    local size = math.random(4, 8)
     p.Size = UDim2.new(0, size, 0, size)
     local startX = math.random()
     p.Position = UDim2.new(startX, 0, 1.1, 0)
-    p.BackgroundColor3 = Color3.fromRGB(255, 100, 150)
+    p.BackgroundColor3 = Color3.fromRGB(180, 50, 250) -- Яркая сочная фиолетовая частица
     p.BackgroundTransparency = math.random(2, 6) / 10
     p.BorderSizePixel = 0
     p.ZIndex = 3
@@ -97,7 +97,7 @@ local function spawnParticle()
 end
 
 local function startParticles()
-    for i = 1, 12 do
+    for i = 1, 14 do
         task.delay(math.random() * 2, spawnParticle)
     end
 end
@@ -106,7 +106,7 @@ local title = Instance.new("TextLabel", mainFrame)
 title.Size = UDim2.new(1, 0, 0.25, 0)
 title.Position = UDim2.new(0, 0, 0.05, 0)
 title.Text = "Select your platform"
-title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextColor3 = Color3.fromRGB(240, 230, 255)
 title.Font = Enum.Font.GothamBold
 title.TextSize = 15
 title.BackgroundTransparency = 1
@@ -143,8 +143,8 @@ local function createButton(name, posX, targetUrl)
     local btn = Instance.new("TextButton", mainFrame)
     btn.Size = UDim2.new(0.42, 0, 0.52, 0)
     btn.Position = UDim2.new(posX, 0, 0.36, 0)
-    btn.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
-    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    btn.BackgroundColor3 = Color3.fromRGB(14, 10, 20) -- Еще более темный фиолетово-черный оттенок кнопок
+    btn.TextColor3 = Color3.fromRGB(240, 230, 255)
     btn.Text = name
     btn.Font = Enum.Font.GothamBold
     btn.TextSize = 15
@@ -154,26 +154,26 @@ local function createButton(name, posX, targetUrl)
     btnCorner.CornerRadius = UDim.new(0, 12)
 
     local stroke = Instance.new("UIStroke", btn)
-    stroke.Color = Color3.fromRGB(40, 40, 40)
-    stroke.Thickness = 1
+    stroke.Color = Color3.fromRGB(45, 25, 65) -- Темно-фиолетовая обводка по умолчанию
+    stroke.Thickness = 1.2
     
     -- Плавные анимации при наведении и нажатии
     btn.MouseEnter:Connect(function()
         if isClosing then return end
         TweenService:Create(btn, TweenInfo.new(0.3, Enum.EasingStyle.Quart), {
-            BackgroundColor3 = Color3.fromRGB(35, 35, 35),
+            BackgroundColor3 = Color3.fromRGB(28, 18, 42), -- Сочный темно-фиолетовый при наведении
             Size = UDim2.new(0.44, 0, 0.54, 0)
         }):Play()
-        TweenService:Create(stroke, TweenInfo.new(0.3), {Color = Color3.fromRGB(255, 100, 150)}):Play()
+        TweenService:Create(stroke, TweenInfo.new(0.3), {Color = Color3.fromRGB(180, 50, 250)}):Play()
     end)
 
     btn.MouseLeave:Connect(function()
         if isClosing then return end
         TweenService:Create(btn, TweenInfo.new(0.3, Enum.EasingStyle.Quart), {
-            BackgroundColor3 = Color3.fromRGB(22, 22, 22),
+            BackgroundColor3 = Color3.fromRGB(14, 10, 20),
             Size = UDim2.new(0.42, 0, 0.52, 0)
         }):Play()
-        TweenService:Create(stroke, TweenInfo.new(0.3), {Color = Color3.fromRGB(40, 40, 40)}):Play()
+        TweenService:Create(stroke, TweenInfo.new(0.3), {Color = Color3.fromRGB(45, 25, 65)}):Play()
     end)
 
     btn.MouseButton1Down:Connect(function()
@@ -206,7 +206,7 @@ task.spawn(function()
     
     -- 1. Появление приветствия
     TweenService:Create(welcomeFrame, introInfo, {BackgroundTransparency = 0.05}):Play()
-    TweenService:Create(welcomeStroke, introInfo, {Transparency = 0.4}):Play()
+    TweenService:Create(welcomeStroke, introInfo, {Transparency = 0.3}):Play()
     TweenService:Create(welcomeText, introInfo, {TextTransparency = 0}):Play()
     
     task.wait(1.8) -- Время показа надписи
@@ -226,6 +226,6 @@ task.spawn(function()
     
     local mainTweenInfo = TweenInfo.new(0.6, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
     TweenService:Create(mainFrame, mainTweenInfo, {BackgroundTransparency = 0.05}):Play()
-    TweenService:Create(mainStroke, mainTweenInfo, {Transparency = 0.4}):Play()
+    TweenService:Create(mainStroke, mainTweenInfo, {Transparency = 0.3}):Play()
     TweenService:Create(title, mainTweenInfo, {TextTransparency = 0}):Play()
 end)
